@@ -1,15 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const pg = require('pg');
 const knex = require('../db/knex');
-
-const connection = new pg.Pool({
-  host: 'localhost',
-  user: 'root',
-  password: 'postgres',
-  database: 'todo_app',
-  port:5432,
-});
 
 router.get('/', function (req, res, next) {
   knex("tasks")
@@ -28,6 +19,7 @@ router.get('/', function (req, res, next) {
       });
     });
 });
+
 router.post('/', function (req, res, next) {
   const todo = req.body.add;
   knex("tasks")
@@ -42,5 +34,8 @@ router.post('/', function (req, res, next) {
       });
     });
 });
+
+router.use('/signup', require('./signup'));
+router.use('/signin', require('./signin'));
 
 module.exports = router;
