@@ -7,7 +7,6 @@ router.get('/', function (req, res, next) {
     title: 'Sign up',
   });
 });
-
 router.post('/', function (req, res, next) {
   const username = req.body.username;
   const password = req.body.password;
